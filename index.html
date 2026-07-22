@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Научные опыты для детей — русский каталог</title>
+<style>
+
+:root{--bg:#f6f8fb;--card:#ffffff;--accent:#2f8fdd;--accent2:#37b6a3;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+header{background:linear-gradient(135deg,#2f8fdd,#37b6a3);color:#fff;padding:32px 20px;text-align:center;}
+header h1{margin:0 0 8px;font-size:28px;}
+header p{margin:0;opacity:.9;}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0;justify-content:center;}
+.filters button{border:1px solid var(--border);background:#fff;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:14px;color:var(--text);}
+.filters button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-decoration:none;color:var(--text);transition:.15s;display:flex;flex-direction:column;gap:6px;}
+.card:hover{box-shadow:0 6px 18px rgba(0,0,0,.08);transform:translateY(-2px);}
+.card .num{font-size:12px;color:var(--muted);}
+.card h3{margin:0;font-size:17px;line-height:1.3;}
+.card .zh{font-size:13px;color:var(--muted);}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;background:#fde68a;color:#92400e;width:fit-content;}
+.badge.ok{background:#d1fae5;color:#065f46;}
+.top-actions{text-align:center;margin:20px 0;}
+.top-actions a{color:var(--accent);text-decoration:none;font-size:14px;}
+.item-page{background:#fbfcfe;}
+.item-page .container{max-width:680px;}
+.item-page h1{font-size:27px;margin:6px 0 22px;font-weight:700;letter-spacing:-.01em;color:#222b38;}
+.item-page .zh-title{color:var(--muted);margin-top:0;}
+.section-block{background:transparent;border:none;border-radius:0;padding:0;margin-bottom:30px;}
+.section-block h2{margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px;}
+.section-block h2::before{content:"";width:16px;height:3px;border-radius:2px;background:var(--accent);opacity:.55;}
+.section-block p{margin:0;font-size:16.5px;line-height:1.75;color:#3b4453;}
+.section-block ol{margin:0;padding-left:0;list-style:none;counter-reset:step;}
+.section-block ol li{position:relative;padding:0 0 0 40px;margin-bottom:16px;font-size:16.5px;line-height:1.7;color:#3b4453;counter-increment:step;}
+.section-block ol li:last-child{margin-bottom:0;}
+.section-block ol li::before{content:counter(step);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:#e8f2fb;color:var(--accent);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+.video-placeholder{aspect-ratio:16/9;background:#eef4fa;border:none;border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;text-align:center;padding:20px;}
+.back-link{display:inline-block;margin-bottom:16px;color:var(--accent);text-decoration:none;font-size:14px;}
+.pending{color:#92400e;background:#fffbeb;border:1px solid #fde68a;padding:10px 14px;border-radius:8px;font-size:14px;}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 16px;}
+.group-title{font-size:19px;margin:34px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--accent);color:var(--text);}
+.group-title:first-of-type{margin-top:8px;}
+.group-count{color:var(--muted);font-size:14px;font-weight:normal;}
+
+/* Поиск */
+.searchbar{position:sticky;top:0;z-index:20;background:var(--bg);padding:14px 16px;border-bottom:1px solid var(--border);}
+.search-wrap{max-width:640px;margin:0 auto;position:relative;display:flex;align-items:center;}
+.search-icon{position:absolute;left:14px;font-size:15px;pointer-events:none;opacity:.55;}
+#search{width:100%;padding:13px 40px 13px 40px;border:1px solid var(--border);border-radius:24px;font-size:16px;background:#fff;color:var(--text);outline:none;}
+#search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,143,221,.15);}
+#search-clear{display:none;position:absolute;right:8px;border:none;background:#e5e7eb;color:#555;width:26px;height:26px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;}
+.no-results{text-align:center;color:var(--muted);font-size:15px;padding:40px 0;}
+
+/* Мобильная адаптация */
+@media (max-width:600px){
+  header{padding:22px 16px;}
+  header h1{font-size:22px;}
+  header p{font-size:13px;}
+  .container{padding:16px 12px 50px;}
+  .grid{grid-template-columns:1fr;gap:10px;}
+  .card{padding:15px 16px;border-radius:12px;gap:4px;flex-direction:row;align-items:center;justify-content:space-between;}
+  .card h3{font-size:16px;}
+  .card .zh{font-size:12px;}
+  .card .badge{flex-shrink:0;}
+  .group-title{font-size:16px;margin:24px 0 10px;}
+  #search{font-size:16px;padding:12px 38px;}
+  .item-page h1{font-size:23px;margin:4px 0 18px;}
+  .section-block{padding:0;margin-bottom:26px;}
+  .section-block p,.section-block ol li{font-size:16px;}
+}
+
+</style>
+</head><body>
+<header>
+<h1>Научные опыты для детей</h1>
+<p>Русскоязычный каталог наборов &middot; 122 опытов, сгруппированы по темам</p>
+</header>
+<div class="searchbar">
+<div class="search-wrap">
+<span class="search-icon">&#128269;</span>
+<input type="search" id="search" placeholder="Поиск опыта по названию..." autocomplete="off">
+<button type="button" id="search-clear" aria-label="Очистить">&times;</button>
+</div>
+</div>
+<div class="container">
+<section class="group">
+<h2 class="group-title">Цвет, радуга и расслоение жидкостей <span class="group-count">(13)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_003.html" data-search="расслоение жидкостей">
+<h3>Расслоение жидкостей</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_004.html" data-search="цветная эстафета">
+<h3>Цветная эстафета</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_007.html" data-search="цветной жемчужный дождь">
+<h3>Цветной жемчужный дождь</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_014.html" data-search="радужный дождь">
+<h3>Радужный дождь</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_030.html" data-search="радуга в стакане">
+<h3>Радуга в стакане</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_127.html" data-search="твёрдая радуга">
+<h3>Твёрдая радуга</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_055.html" data-search="цветной торнадо">
+<h3>Цветной торнадо</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_079.html" data-search="диффузия красителя">
+<h3>Диффузия красителя</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_012.html" data-search="цветной фонтан">
+<h3>Цветной фонтан</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_060.html" data-search="радужный пузырьковый дракон">
+<h3>Радужный пузырьковый дракон</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_054.html" data-search="исчезающий цветок">
+<h3>Исчезающий цветок</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_175.html" data-search="чай, меняющий цвет">
+<h3>Чай, меняющий цвет</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_212.html" data-search="сосна, меняющая цвет">
+<h3>Сосна, меняющая цвет</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Химические реакции: вулканы, газировка, кислоты <span class="group-count">(12)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_013.html" data-search="извержение вулкана">
+<h3>Извержение вулкана</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_160.html" data-search="вулкан под водой">
+<h3>Вулкан под водой</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_037.html" data-search="лимон «извергает огонь»">
+<h3>Лимон «извергает огонь»</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_061.html" data-search="молоко встречает лимонную кислоту">
+<h3>Молоко встречает лимонную кислоту</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_281.html" data-search="кола плюс молоко">
+<h3>Кола плюс молоко</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_132.html" data-search="хитрый способ открыть банку колы">
+<h3>Хитрый способ открыть банку колы</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_005.html" data-search="искусственный снег">
+<h3>Искусственный снег</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_143.html" data-search="искусственный иней">
+<h3>Искусственный иней</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_082.html" data-search="натуральные дрожжи">
+<h3>Натуральные дрожжи</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_045.html" data-search="фруктовое моющее средство своими руками">
+<h3>Фруктовое моющее средство своими руками</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_052.html" data-search="откуда берётся соль">
+<h3>Откуда берётся соль</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_248.html" data-search="соль с «острыми зубами»">
+<h3>Соль с «острыми зубами»</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Масло, вода, плотность и плавучесть <span class="group-count">(5)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_017.html" data-search="разделение масла и воды">
+<h3>Разделение масла и воды</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_047.html" data-search="смешивание масла и воды">
+<h3>Смешивание масла и воды</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_154.html" data-search="водоизмещение">
+<h3>Водоизмещение</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_258.html" data-search="закон архимеда">
+<h3>Закон Архимеда</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_039.html" data-search="простой фильтр для воды">
+<h3>Простой фильтр для воды</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Опыты с яйцами <span class="group-count">(6)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_015.html" data-search="мраморное яйцо">
+<h3>Мраморное яйцо</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_040.html" data-search="выдутое яйцо">
+<h3>Выдутое яйцо</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_019.html" data-search="парящее яйцо">
+<h3>Парящее яйцо</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_148.html" data-search="яйцо без скорлупы">
+<h3>Яйцо без скорлупы</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_109.html" data-search="как отличить варёное яйцо от сырого">
+<h3>Как отличить варёное яйцо от сырого</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_204.html" data-search="яйца строят пирамиду">
+<h3>Яйца строят пирамиду</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Воздушные шарики <span class="group-count">(11)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_010.html" data-search="лимон лопает шарик">
+<h3>Лимон лопает шарик</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_022.html" data-search="шарик-силач">
+<h3>Шарик-силач</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_157.html" data-search="взрывной характер шарика">
+<h3>Взрывной характер шарика</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_174.html" data-search="волшебный шарик">
+<h3>Волшебный шарик</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_103.html" data-search="пустая бутылка надувает шарик">
+<h3>Пустая бутылка надувает шарик</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_106.html" data-search="канатная дорога из шарика">
+<h3>Канатная дорога из шарика</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_094.html" data-search="шарик кружится">
+<h3>Шарик кружится</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_233.html" data-search="свободное падение шарика">
+<h3>Свободное падение шарика</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_182.html" data-search="шарик превращается в мяч">
+<h3>Шарик превращается в мяч</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_136.html" data-search="запуск «пушечного» шарика">
+<h3>Запуск «пушечного» шарика</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_104.html" data-search="дружелюбная ладошка">
+<h3>Дружелюбная ладошка</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Шарики для пинг-понга <span class="group-count">(5)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_016.html" data-search="вода засасывает шарик для пинг-понга">
+<h3>Вода засасывает шарик для пинг-понга</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_074.html" data-search="парящий шарик для пинг-понга">
+<h3>Парящий шарик для пинг-понга</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_131.html" data-search="шарик для пинг-понга хочет нырнуть">
+<h3>Шарик для пинг-понга хочет нырнуть</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_210.html" data-search="шарик для пинг-понга тонет">
+<h3>Шарик для пинг-понга тонет</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_096.html" data-search="восстановление мятого шарика">
+<h3>Восстановление мятого шарика</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Мыльные пузыри <span class="group-count">(2)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_141.html" data-search="пузырь, который не надувается">
+<h3>Пузырь, который не надувается</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_162.html" data-search="прыгающий мыльный пузырь">
+<h3>Прыгающий мыльный пузырь</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Вода: поверхностное натяжение и атмосферное давление <span class="group-count">(15)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_034.html" data-search="вода, которая не выливается">
+<h3>Вода, которая не выливается</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_138.html" data-search="прижатая вода">
+<h3>Прижатая вода</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_100.html" data-search="опыт с атмосферным давлением">
+<h3>Опыт с атмосферным давлением</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_018.html" data-search="вакуумный фонтан">
+<h3>Вакуумный фонтан</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_134.html" data-search="поверхностное натяжение воды">
+<h3>Поверхностное натяжение воды</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_087.html" data-search="капля, которая не намокает">
+<h3>Капля, которая не намокает</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_178.html" data-search="танцующая капля воды">
+<h3>Танцующая капля воды</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_181.html" data-search="«липкая» вода">
+<h3>«Липкая» вода</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_092.html" data-search="вода с «притяжением»">
+<h3>Вода с «притяжением»</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_077.html" data-search="волшебный пакет с водой">
+<h3>Волшебный пакет с водой</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_068.html" data-search="водопад из стакана">
+<h3>Водопад из стакана</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_097.html" data-search="вращающаяся бутылка-юла">
+<h3>Вращающаяся бутылка-юла</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_149.html" data-search="«слипшиеся» стаканы">
+<h3>«Слипшиеся» стаканы</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_252.html" data-search="вода связывает на расстоянии">
+<h3>Вода связывает на расстоянии</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_222.html" data-search="плавающий лист">
+<h3>Плавающий лист</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Свечи <span class="group-count">(3)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_006.html" data-search="свеча, впитывающая воду">
+<h3>Свеча, впитывающая воду</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_102.html" data-search="какая свеча погаснет первой">
+<h3>Какая свеча погаснет первой</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_107.html" data-search="свеча, горящая под водой">
+<h3>Свеча, горящая под водой</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Стаканы, банки и бутылки <span class="group-count">(7)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_036.html" data-search="стакан поднимает тарелку">
+<h3>Стакан поднимает тарелку</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_038.html" data-search="банка-акробат">
+<h3>Банка-акробат</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_117.html" data-search="бегущая банка">
+<h3>Бегущая банка</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_120.html" data-search="банка, которая «худеет»">
+<h3>Банка, которая «худеет»</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_257.html" data-search="поднимающийся стаканчик">
+<h3>Поднимающийся стаканчик</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_272.html" data-search="стаканчик превращается в динамик">
+<h3>Стаканчик превращается в динамик</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_186.html" data-search="дышащая бутылка">
+<h3>Дышащая бутылка</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Баланс, центр тяжести и инерция <span class="group-count">(9)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_089.html" data-search="птица-балансир">
+<h3>Птица-балансир</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_059.html" data-search="монета на краю чашки">
+<h3>Монета на краю чашки</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_112.html" data-search="баланс монеты на ребре">
+<h3>Баланс монеты на ребре</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_095.html" data-search="палочки стоят по стойке «смирно»">
+<h3>Палочки стоят по стойке «смирно»</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_041.html" data-search="«удар через гору» с монетами">
+<h3>«Удар через гору» с монетами</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_062.html" data-search="«полёт по стенам»">
+<h3>«Полёт по стенам»</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_224.html" data-search="строим мост из палочек">
+<h3>Строим мост из палочек</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_139.html" data-search="волшебный бумажный мост">
+<h3>Волшебный бумажный мост</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_251.html" data-search="«заморозка» ключа">
+<h3>«Заморозка» ключа</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Статическое электричество <span class="group-count">(5)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_110.html" data-search="трубочка притягивает бумажные кусочки">
+<h3>Трубочка притягивает бумажные кусочки</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_246.html" data-search="наэлектризованная бумага">
+<h3>Наэлектризованная бумага</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_111.html" data-search="стилус для телефона своими руками">
+<h3>Стилус для телефона своими руками</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_288.html" data-search="волшебная трубочка">
+<h3>Волшебная трубочка</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_266.html" data-search="пакет, прилипший к стене">
+<h3>Пакет, прилипший к стене</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Звук <span class="group-count">(4)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_048.html" data-search="мелодичная флейта пана">
+<h3>Мелодичная флейта Пана</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_072.html" data-search="увидеть звук">
+<h3>Увидеть звук</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_216.html" data-search="забавный «жучок»">
+<h3>Забавный «жучок»</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_144.html" data-search="бумажная хлопушка">
+<h3>Бумажная хлопушка</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Свет, зрение и оптические иллюзии <span class="group-count">(8)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_056.html" data-search="лупа из капли воды">
+<h3>Лупа из капли воды</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_035.html" data-search="подводный мир">
+<h3>Подводный мир</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_161.html" data-search="глаза могут обманывать">
+<h3>Глаза могут обманывать</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_172.html" data-search="лестница-иллюзия">
+<h3>Лестница-иллюзия</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_145.html" data-search="оптическая подмена">
+<h3>Оптическая подмена</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_215.html" data-search="отражение в воде">
+<h3>Отражение в воде</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_293.html" data-search="очки, которые не запотевают">
+<h3>Очки, которые не запотевают</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_164.html" data-search="копирование отпечатка пальца">
+<h3>Копирование отпечатка пальца</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Бумага: складывание, резка, конструкции <span class="group-count">(7)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_108.html" data-search="«лишняя» бумага">
+<h3>«Лишняя» бумага</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_163.html" data-search="один разрез — восемь частей бумаги">
+<h3>Один разрез — восемь частей бумаги</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_155.html" data-search="волшебная бумажная полоска">
+<h3>Волшебная бумажная полоска</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_090.html" data-search="лента мёбиуса">
+<h3>Лента Мёбиуса</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_142.html" data-search="вращающийся кусочек бумаги">
+<h3>Вращающийся кусочек бумаги</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_195.html" data-search="гонка гусениц">
+<h3>Гонка гусениц</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_105.html" data-search="непотопляемый бумажный кораблик">
+<h3>Непотопляемый бумажный кораблик</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Температура, тепло и лёд <span class="group-count">(3)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_028.html" data-search="самодельный термометр">
+<h3>Самодельный термометр</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_091.html" data-search="опыт с температурой воды">
+<h3>Опыт с температурой воды</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_261.html" data-search="склеивание ледяной башни">
+<h3>Склеивание ледяной башни</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+
+<section class="group">
+<h2 class="group-title">Механика и разное <span class="group-count">(7)</span></h2>
+<div class="grid">
+<a class="card" href="items/item_051.html" data-search="модель дыхания лёгких">
+<h3>Модель дыхания лёгких</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_064.html" data-search="потерянное направление">
+<h3>Потерянное направление</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_093.html" data-search="спасение на расстоянии">
+<h3>Спасение на расстоянии</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_115.html" data-search="управление соломинкой">
+<h3>Управление соломинкой</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_247.html" data-search="изготовление механической руки">
+<h3>Изготовление механической руки</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_255.html" data-search="десантник с парашютом">
+<h3>Десантник с парашютом</h3>
+<span class="badge ok">готово</span>
+</a>
+<a class="card" href="items/item_290.html" data-search="самодельный пластилин">
+<h3>Самодельный пластилин</h3>
+<span class="badge ok">готово</span>
+</a>
+</div>
+</section>
+<p id="no-results" class="no-results" hidden>Ничего не найдено</p>
+</div>
+<footer>Каталог создаётся на основе оригинального китайского сайта. Видео и полные инструкции добавляются постепенно.</footer>
+<script>
+(function(){
+  var input=document.getElementById('search');
+  var clearBtn=document.getElementById('search-clear');
+  var cards=Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var groups=Array.prototype.slice.call(document.querySelectorAll('.group'));
+  var noRes=document.getElementById('no-results');
+  function apply(){
+    var q=input.value.trim().toLowerCase();
+    clearBtn.style.display=q?'block':'none';
+    var anyVisible=false;
+    cards.forEach(function(c){
+      var match=!q||c.getAttribute('data-search').indexOf(q)!==-1;
+      c.style.display=match?'':'none';
+      if(match)anyVisible=true;
+    });
+    groups.forEach(function(g){
+      var vis=g.querySelectorAll('.card:not([style*="display: none"])').length>0;
+      g.style.display=vis?'':'none';
+    });
+    noRes.hidden=anyVisible;
+  }
+  input.addEventListener('input',apply);
+  clearBtn.addEventListener('click',function(){input.value='';apply();input.focus();});
+})();
+</script>
+</body></html>

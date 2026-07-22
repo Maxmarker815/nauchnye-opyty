@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Вода, вылетающая из бутылки — Научные опыты для детей</title>
+<style>
+
+:root{--bg:#f6f8fb;--card:#ffffff;--accent:#2f8fdd;--accent2:#37b6a3;--text:#1f2937;--muted:#6b7280;--border:#e5e7eb;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+header{background:linear-gradient(135deg,#2f8fdd,#37b6a3);color:#fff;padding:32px 20px;text-align:center;}
+header h1{margin:0 0 8px;font-size:28px;}
+header p{margin:0;opacity:.9;}
+.container{max-width:1100px;margin:0 auto;padding:24px 16px 60px;}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0;justify-content:center;}
+.filters button{border:1px solid var(--border);background:#fff;padding:8px 16px;border-radius:20px;cursor:pointer;font-size:14px;color:var(--text);}
+.filters button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;text-decoration:none;color:var(--text);transition:.15s;display:flex;flex-direction:column;gap:6px;}
+.card:hover{box-shadow:0 6px 18px rgba(0,0,0,.08);transform:translateY(-2px);}
+.card .num{font-size:12px;color:var(--muted);}
+.card h3{margin:0;font-size:17px;line-height:1.3;}
+.card .zh{font-size:13px;color:var(--muted);}
+.badge{display:inline-block;font-size:11px;padding:2px 8px;border-radius:10px;background:#fde68a;color:#92400e;width:fit-content;}
+.badge.ok{background:#d1fae5;color:#065f46;}
+.top-actions{text-align:center;margin:20px 0;}
+.top-actions a{color:var(--accent);text-decoration:none;font-size:14px;}
+.item-page{background:#fbfcfe;}
+.item-page .container{max-width:680px;}
+.item-page h1{font-size:27px;margin:6px 0 22px;font-weight:700;letter-spacing:-.01em;color:#222b38;}
+.item-page .zh-title{color:var(--muted);margin-top:0;}
+.section-block{background:transparent;border:none;border-radius:0;padding:0;margin-bottom:30px;}
+.section-block h2{margin:0 0 10px;font-size:14px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--accent);display:flex;align-items:center;gap:8px;}
+.section-block h2::before{content:"";width:16px;height:3px;border-radius:2px;background:var(--accent);opacity:.55;}
+.section-block p{margin:0;font-size:16.5px;line-height:1.75;color:#3b4453;}
+.section-block ol{margin:0;padding-left:0;list-style:none;counter-reset:step;}
+.section-block ol li{position:relative;padding:0 0 0 40px;margin-bottom:16px;font-size:16.5px;line-height:1.7;color:#3b4453;counter-increment:step;}
+.section-block ol li:last-child{margin-bottom:0;}
+.section-block ol li::before{content:counter(step);position:absolute;left:0;top:1px;width:26px;height:26px;border-radius:50%;background:#e8f2fb;color:var(--accent);font-size:14px;font-weight:600;display:flex;align-items:center;justify-content:center;}
+.video-placeholder{aspect-ratio:16/9;background:#eef4fa;border:none;border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px;text-align:center;padding:20px;}
+.back-link{display:inline-block;margin-bottom:16px;color:var(--accent);text-decoration:none;font-size:14px;}
+.pending{color:#92400e;background:#fffbeb;border:1px solid #fde68a;padding:10px 14px;border-radius:8px;font-size:14px;}
+footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 16px;}
+.group-title{font-size:19px;margin:34px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--accent);color:var(--text);}
+.group-title:first-of-type{margin-top:8px;}
+.group-count{color:var(--muted);font-size:14px;font-weight:normal;}
+
+/* Поиск */
+.searchbar{position:sticky;top:0;z-index:20;background:var(--bg);padding:14px 16px;border-bottom:1px solid var(--border);}
+.search-wrap{max-width:640px;margin:0 auto;position:relative;display:flex;align-items:center;}
+.search-icon{position:absolute;left:14px;font-size:15px;pointer-events:none;opacity:.55;}
+#search{width:100%;padding:13px 40px 13px 40px;border:1px solid var(--border);border-radius:24px;font-size:16px;background:#fff;color:var(--text);outline:none;}
+#search:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(47,143,221,.15);}
+#search-clear{display:none;position:absolute;right:8px;border:none;background:#e5e7eb;color:#555;width:26px;height:26px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;}
+.no-results{text-align:center;color:var(--muted);font-size:15px;padding:40px 0;}
+
+/* Мобильная адаптация */
+@media (max-width:600px){
+  header{padding:22px 16px;}
+  header h1{font-size:22px;}
+  header p{font-size:13px;}
+  .container{padding:16px 12px 50px;}
+  .grid{grid-template-columns:1fr;gap:10px;}
+  .card{padding:15px 16px;border-radius:12px;gap:4px;flex-direction:row;align-items:center;justify-content:space-between;}
+  .card h3{font-size:16px;}
+  .card .zh{font-size:12px;}
+  .card .badge{flex-shrink:0;}
+  .group-title{font-size:16px;margin:24px 0 10px;}
+  #search{font-size:16px;padding:12px 38px;}
+  .item-page h1{font-size:23px;margin:4px 0 18px;}
+  .section-block{padding:0;margin-bottom:26px;}
+  .section-block p,.section-block ol li{font-size:16px;}
+}
+
+</style>
+</head><body class="item-page">
+<div class="container">
+<a class="back-link" href="../index.html">&larr; Ко всему каталогу</a>
+<h1>Вода, вылетающая из бутылки</h1>
+
+<div class="section-block">
+<h2>Видео</h2>
+<div class="video-placeholder">Видео добавится позже</div>
+</div>
+
+<div class="section-block">
+<h2>Материалы</h2>
+<p>Трубочка, мерный стакан, самим подготовить: бутылка, вода.</p>
+</div>
+
+<div class="section-block">
+<h2>Шаги эксперимента</h2>
+<ol>
+<li>Наполните бутылку водой на 80% и вставьте в неё трубочку.</li>
+<li>Плотно зажмите трубочку рукой, прижмите губы к горлышку так, чтобы полностью загерметизировать его, затем дуйте внутрь бутылки.</li>
+<li>Вода «вылетит» из трубочки фонтаном.</li>
+</ol>
+</div>
+
+<div class="section-block">
+<h2>Научный принцип</h2>
+<p>Когда горлышко герметично закрыто, а вы дуете внутрь, давление воздуха в бутылке постоянно растёт. Трубочка образует единственный выход наружу, поэтому растущее давление выталкивает воду через неё — тот же принцип используется от обычного крана до мощной водомётной пушки.</p>
+</div>
+
+</div>
+<footer>Каталог научных опытов</footer>
+</body></html>
