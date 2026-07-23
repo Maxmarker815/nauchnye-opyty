@@ -678,8 +678,7 @@
     "needs_translation": false,
     "title_ru": "Монета на краю чашки",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), мерный стакан, вода, монета",
-    "status": "full",
-    "order": 80
+    "status": "removed"
   },
   {
     "category": "1-100",
