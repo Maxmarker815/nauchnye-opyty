@@ -1080,8 +1080,7 @@
     "needs_translation": false,
     "title_ru": "Шарик кружится",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), шарик, трубочка, ножницы, резинка",
-    "status": "full",
-    "order": 42
+    "status": "removed"
   },
   {
     "category": "1-100",
