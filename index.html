@@ -53,6 +53,18 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 16px;}
 #search-clear{display:none;position:absolute;right:8px;border:none;background:#e5e7eb;color:#555;width:26px;height:26px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;}
 .no-results{text-align:center;color:var(--muted);font-size:15px;padding:40px 0;}
 
+/* Правила безопасности */
+.safety-box{max-width:1100px;margin:16px auto 0;padding:0 16px;}
+.safety-box summary{cursor:pointer;list-style:none;background:#fff7e6;border:1px solid #f5d78e;color:#92400e;padding:12px 16px;border-radius:10px;font-size:14px;font-weight:600;display:flex;align-items:center;gap:8px;user-select:none;}
+.safety-box summary::-webkit-details-marker{display:none;}
+.safety-box summary::after{content:"\25be";margin-left:auto;font-size:12px;transition:transform .15s;}
+.safety-box[open] summary{border-radius:10px 10px 0 0;}
+.safety-box[open] summary::after{transform:rotate(180deg);}
+.safety-content{background:#fffdf7;border:1px solid #f5d78e;border-top:none;border-radius:0 0 10px 10px;padding:16px 20px;}
+.safety-content ol{margin:0;padding-left:20px;}
+.safety-content li{margin-bottom:10px;font-size:14.5px;line-height:1.6;color:#3b4453;}
+.safety-content li:last-child{margin-bottom:0;}
+
 /* Мобильная адаптация */
 @media (max-width:600px){
   header{padding:22px 16px;}
@@ -69,6 +81,9 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 16px;}
   .item-page h1{font-size:23px;margin:4px 0 18px;}
   .section-block{padding:0;margin-bottom:26px;}
   .section-block p,.section-block ol li{font-size:16px;}
+  .safety-box summary{font-size:13px;padding:10px 14px;}
+  .safety-content{padding:14px 16px;}
+  .safety-content li{font-size:14px;}
 }
 
 </style>
@@ -77,6 +92,24 @@ footer{text-align:center;color:var(--muted);font-size:13px;padding:30px 16px;}
 <h1>Научные опыты для детей</h1>
 <p>Русскоязычный каталог наборов &middot; 122 опытов, сгруппированы по темам</p>
 </header>
+<details class="safety-box">
+<summary>&#9888;&#65039; Правила безопасности — прочитайте перед началом опытов</summary>
+<div class="safety-content">
+<ol>
+<li><strong>Проводите опыты только в присутствии взрослых.</strong> Взрослый должен контролировать каждый этап эксперимента.</li>
+<li><strong>Ничего не пробуйте на вкус.</strong> Реактивы и материалы нельзя есть и пить, даже если они похожи на еду или напитки.</li>
+<li><strong>Берегите глаза.</strong> Не подносите вещества близко к лицу. Если что-то попало в глаза — сразу промойте их большим количеством чистой воды и обратитесь к взрослому.</li>
+<li><strong>Мойте руки после каждого опыта.</strong> Не трогайте грязными руками лицо, глаза и рот.</li>
+<li><strong>Осторожно с огнём и горячим.</strong> Опыты со свечами, спичками, горячей водой или нагревом проводит только взрослый. Держите поблизости воду на случай возгорания.</li>
+<li><strong>Острые предметы</strong> (ножи, ножницы, зубочистки, булавки) использует или контролирует взрослый.</li>
+<li><strong>Работайте на застеленной поверхности</strong>, вдали от еды, в проветриваемом помещении. Наденьте фартук, при необходимости — перчатки и очки.</li>
+<li><strong>Держите материалы подальше от маленьких детей и домашних животных.</strong> Мелкие детали можно проглотить или вдохнуть.</li>
+<li><strong>Не смешивайте вещества по своему усмотрению</strong> — следуйте только инструкции к опыту.</li>
+<li><strong>После опыта уберите рабочее место</strong> и утилизируйте материалы так, как указано. Результаты опытов не предназначены для еды.</li>
+<li><strong>При плохом самочувствии</strong> (раздражение кожи, глаз, дыхания) прекратите опыт и обратитесь к взрослому, при необходимости — к врачу.</li>
+</ol>
+</div>
+</details>
 <div class="searchbar">
 <div class="search-wrap">
 <span class="search-icon">&#128269;</span>
