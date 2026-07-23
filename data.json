@@ -388,8 +388,7 @@
     "needs_translation": false,
     "title_ru": "Вода, которая не выливается",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), пищевой краситель, вода, пробирка",
-    "status": "full",
-    "order": 54
+    "status": "removed"
   },
   {
     "category": "1-100",
