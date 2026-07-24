@@ -4233,5 +4233,13 @@
     "title_ru": "Батарейка-картинг",
     "materials_hint_ru": "Материалы, самим подготовить: 2 магнита, лист алюминиевой фольги, батарейка АА",
     "status": "full"
+  },
+  {
+    "category": "377",
+    "title_zh": "水卷龙卷风",
+    "id": 377,
+    "needs_translation": false,
+    "title_ru": "Водяной торнадо",
+    "status": "full"
   }
 ]
