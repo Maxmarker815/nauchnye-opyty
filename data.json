@@ -1066,8 +1066,7 @@
     "needs_translation": false,
     "title_ru": "Спасение на расстоянии",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), трубочка, стеклянный стакан, шарик для пинг-понга",
-    "status": "full",
-    "order": 117
+    "status": "removed"
   },
   {
     "category": "1-100",
@@ -1346,8 +1345,7 @@
     "needs_translation": false,
     "title_ru": "Бегущая банка",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), шарик",
-    "status": "full",
-    "order": 74
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1561,8 +1559,7 @@
     "needs_translation": false,
     "title_ru": "Запуск «пушечного» шарика",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), двусторонний скотч, лист A4, шарик для пинг-понга, тарелка",
-    "status": "full",
-    "order": 45
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1655,8 +1652,7 @@
     "needs_translation": false,
     "title_ru": "Бумажная хлопушка",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), лист A4",
-    "status": "full",
-    "order": 96
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1667,8 +1663,7 @@
     "needs_translation": false,
     "title_ru": "Оптическая подмена",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), ножницы",
-    "status": "full",
-    "order": 101
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1701,8 +1696,7 @@
     "needs_translation": false,
     "title_ru": "Яйцо без скорлупы",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), сода, яйцо, салфетка",
-    "status": "full",
-    "order": 33
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1713,8 +1707,7 @@
     "needs_translation": false,
     "title_ru": "«Слипшиеся» стаканы",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), мерный стакан, вода, салфетка",
-    "status": "full",
-    "order": 66
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1769,8 +1762,7 @@
     "needs_translation": false,
     "title_ru": "Водоизмещение",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), мерный стакан, вода",
-    "status": "full",
-    "order": 27
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1804,8 +1796,7 @@
     "needs_translation": false,
     "title_ru": "Взрывной характер шарика",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), шарик, монета",
-    "status": "full",
-    "order": 38
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1838,8 +1829,7 @@
     "needs_translation": false,
     "title_ru": "Вулкан под водой",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), пипетка, пищевой краситель, горячая вода, холодная вода",
-    "status": "full",
-    "order": 14
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1850,8 +1840,7 @@
     "needs_translation": false,
     "title_ru": "Глаза могут обманывать",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), ножницы",
-    "status": "full",
-    "order": 99
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -1998,8 +1987,7 @@
     "needs_translation": false,
     "title_ru": "Волшебный шарик",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), шарик, горячая вода, пластиковая бутылка",
-    "status": "full",
-    "order": 39
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -2235,8 +2223,7 @@
     "needs_translation": false,
     "title_ru": "Гонка гусениц",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), трубочка, ножницы, лист A4",
-    "status": "full",
-    "order": 110
+    "status": "removed"
   },
   {
     "category": "101-200",
@@ -2425,8 +2412,7 @@
     "needs_translation": false,
     "title_ru": "Сосна, меняющая цвет",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), лист A4",
-    "status": "full",
-    "order": 12
+    "status": "removed"
   },
   {
     "category": "201-300",
@@ -2863,8 +2849,7 @@
     "needs_translation": false,
     "title_ru": "«Заморозка» ключа",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), палочки для еды",
-    "status": "full",
-    "order": 87
+    "status": "removed"
   },
   {
     "category": "201-300",
@@ -2944,8 +2929,7 @@
     "needs_translation": false,
     "title_ru": "Закон Архимеда",
     "materials_hint_ru": "Материалы, (нужно подготовить самим), вода, пластиковая бутылка, резинка, хлопковая нить",
-    "status": "full",
-    "order": 28
+    "status": "removed"
   },
   {
     "category": "201-300",
