@@ -4206,5 +4206,14 @@
     "title_ru": "Радужное колесо обозрения",
     "materials_hint_ru": "Материалы, разноцветные драже (типа M&M's или Skittles), самим подготовить: тарелка, вода",
     "status": "full"
+  },
+  {
+    "category": "374",
+    "title_zh": "摩擦自锁",
+    "id": 374,
+    "needs_translation": false,
+    "title_ru": "Кольцо ловит цепочку",
+    "materials_hint_ru": "Материалы, железное кольцо, цепочка",
+    "status": "full"
   }
 ]
